@@ -11,6 +11,13 @@ require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wp-scan-admin
  */
 class WP_Scan {
 	/**
+	 * Instancia de administración del plugin.
+	 *
+	 * @var WP_Scan_Admin
+	 */
+	private $admin;
+
+	/**
 	 * Hook de activación del plugin.
 	 *
 	 * @return void
@@ -32,7 +39,9 @@ class WP_Scan {
 	 * @return void
 	 */
 	public function run() {
-		$admin = new WP_Scan_Admin();
-		$admin->run();
+		if ( null === $this->admin ) {
+			$this->admin = new WP_Scan_Admin();
+		}
+		$this->admin->run();
 	}
 }
