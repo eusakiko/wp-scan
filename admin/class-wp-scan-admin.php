@@ -4,6 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Gestiona la interfaz y menús de administración del plugin.
+ */
 class WP_Scan_Admin {
 	/**
 	 * Inicializa hooks de administración.
