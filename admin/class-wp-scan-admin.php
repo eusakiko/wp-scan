@@ -28,7 +28,7 @@ class WP_Scan_Admin {
 			__( 'WP Scan', 'wp-scan' ),
 			'manage_options',
 			'wp-scan',
-			array( $this, 'render_scanner_page' ),
+			array( $this, 'render_main_page' ),
 			'dashicons-shield'
 		);
 
@@ -37,7 +37,7 @@ class WP_Scan_Admin {
 			__( 'Escáner', 'wp-scan' ),
 			__( 'Escáner', 'wp-scan' ),
 			'manage_options',
-			'wp-scan',
+			'wp-scan-scanner',
 			array( $this, 'render_scanner_page' )
 		);
 
@@ -49,6 +49,23 @@ class WP_Scan_Admin {
 			'wp-scan-backups',
 			array( $this, 'render_backups_page' )
 		);
+	}
+
+	/**
+	 * Vista principal del plugin.
+	 *
+	 * @return void
+	 */
+	public function render_main_page() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+		?>
+		<div class="wrap">
+			<h1><?php esc_html_e( 'WP Scan', 'wp-scan' ); ?></h1>
+			<p><?php esc_html_e( 'Panel principal de WP Scan en construcción.', 'wp-scan' ); ?></p>
+		</div>
+		<?php
 	}
 
 	/**

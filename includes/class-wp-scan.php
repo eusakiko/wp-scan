@@ -18,6 +18,13 @@ class WP_Scan {
 	private $admin;
 
 	/**
+	 * Constructor de la clase principal.
+	 */
+	public function __construct() {
+		$this->admin = new WP_Scan_Admin();
+	}
+
+	/**
 	 * Hook de activación del plugin.
 	 *
 	 * @return void
@@ -39,9 +46,6 @@ class WP_Scan {
 	 * @return void
 	 */
 	public function run() {
-		if ( null === $this->admin ) {
-			$this->admin = new WP_Scan_Admin();
-		}
 		$this->admin->run();
 	}
 }
