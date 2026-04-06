@@ -20,15 +20,14 @@ add_action( 'admin_menu', array( $this, 'register_admin_menu' ) );
  * @return void
  */
 public function register_admin_menu() {
-add_menu_page(
-__( 'WP Scan', 'wp-scan' ),
-__( 'WP Scan', 'wp-scan' ),
-'manage_options',
-'wp-scan',
-array( $this, 'render_scanner_page' ),
-'dashicons-shield',
-56
-);
+		add_menu_page(
+			__( 'WP Scan', 'wp-scan' ),
+			__( 'WP Scan', 'wp-scan' ),
+			'manage_options',
+			'wp-scan',
+			array( $this, 'render_scanner_page' ),
+			'dashicons-shield'
+		);
 
 add_submenu_page(
 'wp-scan',
