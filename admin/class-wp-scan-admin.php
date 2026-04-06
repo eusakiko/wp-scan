@@ -30,7 +30,7 @@ class WP_Scan_Admin {
 			'wp-scan',
 			array( $this, 'render_main_page' ),
 			'dashicons-shield',
-			null
+			80
 		);
 
 		add_submenu_page(
@@ -58,9 +58,7 @@ class WP_Scan_Admin {
 	 * @return void
 	 */
 	public function render_main_page() {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'No tienes permisos suficientes para acceder a esta página.', 'wp-scan' ) );
-		}
+		$this->guard_admin_access();
 		?>
 		<div class="wrap">
 			<h1><?php esc_html_e( 'WP Scan', 'wp-scan' ); ?></h1>
@@ -75,9 +73,7 @@ class WP_Scan_Admin {
 	 * @return void
 	 */
 	public function render_scanner_page() {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'No tienes permisos suficientes para acceder a esta página.', 'wp-scan' ) );
-		}
+		$this->guard_admin_access();
 		?>
 		<div class="wrap">
 			<h1><?php esc_html_e( 'WP Scan - Escáner', 'wp-scan' ); ?></h1>
@@ -92,14 +88,23 @@ class WP_Scan_Admin {
 	 * @return void
 	 */
 	public function render_backups_page() {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'No tienes permisos suficientes para acceder a esta página.', 'wp-scan' ) );
-		}
+		$this->guard_admin_access();
 		?>
 		<div class="wrap">
 			<h1><?php esc_html_e( 'WP Scan - Backups', 'wp-scan' ); ?></h1>
 			<p><?php esc_html_e( 'Página base de backups en construcción.', 'wp-scan' ); ?></p>
 		</div>
 		<?php
+	}
+
+	/**
+	 * Verifica permisos de acceso a páginas de administración.
+	 *
+	 * @return void
+	 */
+	private function guard_admin_access() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'No tienes permisos suficientes para acceder a esta página.', 'wp-scan' ) );
+		}
 	}
 }
