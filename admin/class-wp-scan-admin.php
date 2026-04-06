@@ -29,7 +29,8 @@ class WP_Scan_Admin {
 			'manage_options',
 			'wp-scan',
 			array( $this, 'render_main_page' ),
-			'dashicons-shield'
+			'dashicons-shield',
+			null
 		);
 
 		add_submenu_page(
@@ -58,7 +59,7 @@ class WP_Scan_Admin {
 	 */
 	public function render_main_page() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
+			wp_die( esc_html__( 'No tienes permisos suficientes para acceder a esta página.', 'wp-scan' ) );
 		}
 		?>
 		<div class="wrap">
@@ -75,7 +76,7 @@ class WP_Scan_Admin {
 	 */
 	public function render_scanner_page() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
+			wp_die( esc_html__( 'No tienes permisos suficientes para acceder a esta página.', 'wp-scan' ) );
 		}
 		?>
 		<div class="wrap">
@@ -92,7 +93,7 @@ class WP_Scan_Admin {
 	 */
 	public function render_backups_page() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
+			wp_die( esc_html__( 'No tienes permisos suficientes para acceder a esta página.', 'wp-scan' ) );
 		}
 		?>
 		<div class="wrap">
